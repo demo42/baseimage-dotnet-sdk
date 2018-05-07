@@ -2,4 +2,6 @@
 ARG REGISTRY_NAME
 FROM ${REGISTRY_NAME}microsoft/dotnet:2.1-sdk
 
-ENV BACKGROUND_COLOR=White
+# Values that pass tests Good | Wonderful
+# Anything else - fail!!!
+ENV SOMETHING_UNEXPECTED=Good
