@@ -1,7 +1,6 @@
 #becomes: ${REGISTRY_NAME}baseimages/microsoft/dotnet-sdk:linux-2.1
-ARG REGISTRY_NAME
-FROM ${REGISTRY_NAME}microsoft/dotnet:2.1-sdk
+FROM microsoft/dotnet:2.1-sdk
 
 # Values that pass tests Good | Great
 # Anything else - fail!!!
-ENV SOMETHING_UNEXPECTED=Amazing
+ENV SOMETHING_UNEXPECTED=Good
