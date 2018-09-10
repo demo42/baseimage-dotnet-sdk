@@ -35,22 +35,24 @@ az acr build-task create \
                          --name $GIT_TOKEN_NAME \
                          --query value -o tsv) \
   --commit-trigger-enabled false \
-  --base-image-trigger none \
+  --base-image-trigger-enabled false \
   --registry $ACR_NAME 
 ```
 ** GA syntax **
 ```sh
 az acr task create \
   -n demo42-dotnet-sdk \
-  --context https://github.com/demo42/baseimage-dotnet-sdk \
+  --context https://github.com/demo42/baseimage-dotnet-sdk.git \
   -t baseimages/microsoft/dotnet/sdk:2.1 \
+  -f Dockerfile \
   --build-arg REGISTRY_NAME=$REGISTRY_NAME \
   --git-access-token $(az keyvault secret show \
                          --vault-name $AKV_NAME \
                          --name $GIT_TOKEN_NAME \
                          --query value -o tsv) \
   --commit-trigger-enabled false \
-  --base-image-trigger none \
+  --commit-trigger-enabled false \
+  --base-image-trigger-enabled false \
   --registry $ACR_NAME 
 ```
 
