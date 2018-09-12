@@ -23,22 +23,7 @@ az acr build -t baseimages/microsoft/dotnet/sdk:linux-2.1  .
 ```
 
 ### Maintained as a Task
-** preview syntax **
-```sh
-az acr build-task create \
-  -n demo42dotnetsdk \
-  --context https://github.com/demo42/baseimage-dotnet-sdk \
-  -t baseimages/microsoft/dotnet/sdk:2.1 \
-  --build-arg REGISTRY_NAME=$REGISTRY_NAME \
-  --git-access-token $(az keyvault secret show \
-                         --vault-name $AKV_NAME \
-                         --name $GIT_TOKEN_NAME \
-                         --query value -o tsv) \
-  --commit-trigger-enabled false \
-  --base-image-trigger-enabled false \
-  --registry $ACR_NAME 
-```
-** GA syntax **
+
 ```sh
 az acr task create \
   -n demo42-dotnet-sdk \
@@ -57,12 +42,7 @@ az acr task create \
 ```
 
 ### Manually trigger the task, as triggers are intentionally disabled
-** Preview Syntax **
-```sh
-az acr build-task run -n demo42dotnetsdk
-```
 
-** GA Syntax **
 ```sh
 az acr task run -n demo42-dotnet-sdk
 ```
