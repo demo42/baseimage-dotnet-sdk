@@ -26,23 +26,19 @@ az acr build -t baseimages/microsoft/dotnet/sdk:linux-2.1  .
 
 ```sh
 az acr task create \
-  -n demo42-dotnet-sdk \
+  -n baseimage-dotnet-sdk \
   --context https://github.com/demo42/baseimage-dotnet-sdk.git \
   -t baseimages/microsoft/dotnet/sdk:2.1 \
   -f Dockerfile \
-  --build-arg REGISTRY_NAME=$REGISTRY_NAME \
   --git-access-token $(az keyvault secret show \
                          --vault-name $AKV_NAME \
                          --name $GIT_TOKEN_NAME \
                          --query value -o tsv) \
-  --commit-trigger-enabled false \
-  --commit-trigger-enabled false \
-  --base-image-trigger-enabled false \
   --registry $ACR_NAME 
 ```
 
 ### Manually trigger the task, as triggers are intentionally disabled
 
 ```sh
-az acr task run -n demo42-dotnet-sdk
+az acr task run -n baseimage-dotnet-sdk
 ```
