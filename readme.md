@@ -1,10 +1,15 @@
-# Building the dotnet sdk
-The repository defines a reference to the public version of the dotnet sdk. 
-The purpose of this reference enables demos of base image updates without having to change the public image
-It also represents what most enterprises do, keeping their staged version of base images. Just as they control rollouts of windows updates, enterprises prefer more control and stability. 
+# Buffering Base Images
+
+## Import Staging Image
+
 
 ## build/push w/Docker
-
+```sh
+oras push localhost:5000/hello-artifact:v2 \
+  --manifest-config config.json:application/vnd.acme.rocket.config.v1+json \
+  artifact.txt:application/vnd.acme.rocket.config.v1+json \
+  readme.md:application/vnd.acme.rocket.docs.layer.v1+json
+  ```
 ```powsershell
 $Env:REGISTRY_NAME="demo42.azurecr.io"
 docker build -t $Env:REGISTRY_NAME/baseimages/microsoft/dotnet/sdk:linux-2.1  .

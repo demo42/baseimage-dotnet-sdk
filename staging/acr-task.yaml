@@ -1,0 +1,10 @@
+version: 1.0
+steps:
+  - build: >
+      -t {{.Run.Registry}}/base-images/staging/dotnet/core/sdk:2.1
+      --file .Dockerfile
+      .
+  - push: 
+    - {{.Run.Registry}}/base-images/staging/dotnet/core/sdk:2.1
+    - {{.Run.Registry}}/base-images/staging/dotnet/core/sdk:{{.Run.ID}}
+
